@@ -5,26 +5,19 @@
     <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-success">New Entry</a>
 </p>
 
-
-<h2>My Entries</h2>
+<div class="row">
 <% for entry in @entries %>
-  <div class="col-sm-6 col-md-3">
-  <h3><%= entry["title"] %></h3>
-  <h4><%= entry["occurred_on"] %></h4>
-  <% if entry.uploaded_image.attached? %>
-    <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid">
-  <% else %>
-    <img src="<%= entry["image"] %>" class="img-fluid">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    <h3><%= entry["title"] %></h3>
+    <h6><%= entry["occurred_on"] %></h6>
+    <% if entry.uploaded_image.attached? %>
+      <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid">
+    <% else %>
+      <img src="<%= entry["image"] %>" class="img-fluid">
+    <% end %>
+    <h6><%= entry["description"] %></h6>
+  </div>
   <% end %>
-  <h4><%= entry["description"] %></h4>
-
-<% end %>
-
-
-
-
-
-
 <p>
   <a href="/places">Back to All Places</a>
 </p>
@@ -32,8 +25,5 @@
 
 
 <% else %>
-    <h2>You must login or signup.</h2>
-    <p></p>
-    <p><a href="/login" class="btn btn-success">Login</a></p>
-    <p><a href="/users/new" class="btn btn-success">Signup</a></p>
+  You must first <a href="/login">login</a> to view entries.
 <% end %>
